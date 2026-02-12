@@ -27,23 +27,27 @@ const cooks = {
         experience: 5,
         rating: "⭐⭐⭐⭐⭐",
         review: "Very tasty homemade food",
-        dishes: ["Burger", "Plov", "Manty", "Cutlets", "Borscht"]
+        dishes: ["Burger", "Plov", "Manty", "Cutlets", "Borscht"],
+        photo: "https://xn----htbb6ahfep7a.xn--p1ai/images/povar.jpg"
     },
     Anna: {
         name: "Anna Ivanova",
         experience: 3,
         rating: "⭐⭐⭐⭐",
         review: "Fresh and delicious meals",
-        dishes: ["Lagman", "Rice with chicken", "Salad", "Soup", "Cookies", "SaladGreek"]
+        dishes: ["Lagman", "Rice with chicken", "Salad", "Soup", "Cookies", "SaladGreek"],
+        photo: "http://careerist.ru/news/wp-content/uploads/2016/07/photos_10674566_m-2015.jpg"
     },
     Maria: {
         name: "Maria Petrova",
         experience: 7,
         rating: "⭐⭐⭐⭐⭐",
         review: "Best European cuisine",
-        dishes: ["Lasagna", "Pizza", "Pasta", "Dessert", "CreamSoup"]
+        dishes: ["Lasagna", "Pizza", "Pasta", "Dessert", "CreamSoup"],
+        photo: "https://media.fulledu.ru/documents/images/2018.04.13.10/article/5ad108b639d49817ab1bf1ce.jpg"
     }
 };
+
 
 const dishes = {
     Burger: { price: "2500 ₸", desc: "Bun, beef, cheese", cook: "Aigerim" },
@@ -85,13 +89,16 @@ function renderCook() {
     const cook = cooks[selectedCookKey];
     const dish = dishes[selectedDish];
 
+    const photoDiv = document.querySelector("#cook .photo");
+    photoDiv.innerHTML = `<img src="${cook.photo}" alt="${cook.name}">`; // вставка фото
+
     document.getElementById("cookName").innerText = cook.name;
     document.getElementById("cookExp").innerText = cook.experience;
     document.getElementById("cookRating").innerText = cook.rating;
     document.getElementById("cookReview").innerText = cook.review;
 
     document.getElementById("selectedDishInfo").innerText =
-    `${selectedDish} — ${dish.price} (${dish.desc})`;
+        `${selectedDish} — ${dish.price} (${dish.desc})`;
 
     const list = document.getElementById("cookDishes");
     list.innerHTML = "";
@@ -104,6 +111,18 @@ function renderCook() {
         }
     });
 }
+function selectDish(dishName) {
+    if (!dishes[dishName]) return;
+
+    selectedDish = dishName;
+    selectedCookKey = dishes[dishName].cook;
+
+    // используем функцию из cook.js
+    renderCook(selectedCookKey);
+
+    showSection("cook", true);
+}
+
 
 /* COOK → REGISTER */
 function goRegister() {
@@ -140,21 +159,21 @@ window.addEventListener("popstate", (e) => {
     }
 });
 
-function sendSupport(e) {
+function sendReview(e) {
     e.preventDefault();
 
-    const message = document.getElementById("supportMessage").value.trim();
+    const message = document.getElementById("reviewMessage").value.trim();
 
     if (!message) {
-        alert("Please write a message");
+        alert("Please write a review");
         return;
     }
 
-    alert("Message sent to support");
-
-    // очистка
-    document.getElementById("supportMessage").value = "";
+    alert("Review sent successfully");
+    document.getElementById("reviewMessage").value = "";
 }
+
+
 
 function submitRegister(e) {
     e.preventDefault();
@@ -162,4 +181,88 @@ function submitRegister(e) {
     alert("✅ Registration successful");
 
     showSection("food");
+}
+
+function renderCook() {
+    const cook = cooks[selectedCookKey];
+    const dish = dishes[selectedDish];
+
+    const photoDiv = document.querySelector("#cook .photo");
+    photoDiv.innerHTML = `<img src="${cook.photo}" alt="${cook.name}">`;
+
+    document.getElementById("cookName").innerText = cook.name;
+    document.getElementById("cookExp").innerText = cook.experience;
+    document.getElementById("cookRating").innerText = cook.rating;
+    document.getElementById("cookReview").innerText = cook.review;
+
+    document.getElementById("selectedDishInfo").innerText =
+        `${selectedDish} — ${dish.price} (${dish.desc})`;
+
+    const list = document.getElementById("cookDishes");
+    list.innerHTML = "";
+
+    cook.dishes.forEach(d => {
+        if (d !== selectedDish) {
+            const li = document.createElement("li");
+            li.innerText = d;
+            list.appendChild(li);
+        }
+    });
+}
+
+function sendComplaint(e) {
+    e.preventDefault();
+
+    const message = document.getElementById("complaintMessage").value.trim();
+
+    if (!message) {
+        alert("Please write a complaint");
+        return;
+    }
+
+    alert("Complaint sent successfully");
+
+    document.getElementById("complaintMessage").value = "";
+
+    showSection("food");
+}
+
+function openProfile(cookKey) {
+    const cook = cooks[cookKey];
+    if (!cook) return;
+
+    document.getElementById("profilePhoto").innerHTML =
+        `<img src="${cook.photo}" alt="${cook.name}">`;
+
+    document.getElementById("profileName").innerText = cook.name;
+    document.getElementById("profileExp").innerText = cook.experience;
+    document.getElementById("profileRating").innerText = cook.rating;
+    document.getElementById("profileSpeciality").innerText =
+        "Speciality: " + cook.review;
+
+    const list = document.getElementById("profileDishes");
+    list.innerHTML = "";
+
+    cook.dishes.forEach(dish => {
+        const li = document.createElement("li");
+        li.innerText = dish;
+        list.appendChild(li);
+    });
+
+    showSection("cookProfile");
+}
+
+function makeOrder() {
+    if (!selectedDish || !selectedCookKey) return;
+
+    const cook = cooks[selectedCookKey];
+
+    document.getElementById("orderMessage").innerText =
+        `You ordered ${selectedDish} from ${cook.name}.`;
+
+    showSection("orderSuccess");
+
+    // очистка выбора
+    selectedDish = null;
+    selectedCookKey = null;
 }

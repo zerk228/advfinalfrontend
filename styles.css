@@ -76,7 +76,6 @@ header .left {
 }
 
 
-
 /* SECTIONS */
 section {
     display: none;
@@ -85,7 +84,12 @@ section {
 
 section.active {
     display: block;
-      flex: 1;
+    flex: 1;
+}
+
+section.cooks {
+    display: block;
+    flex: 1;
 }
 
 /* GRID */
@@ -163,7 +167,6 @@ section#support.active {
     align-items: center;
 }
 
-
 .support-box {
     width: 100%;
     max-width: 600px;
@@ -228,7 +231,6 @@ section#support.active {
     margin: 80px auto;
 }
 
-
 /* LEFT */
 .form-side h2 {
     margin-bottom: 20px;
@@ -250,7 +252,6 @@ section#support.active {
     max-height: 420px;
     object-fit: contain;
 }
-
 
 /* BECOME COOK */
 #becomeCook.active {
@@ -278,3 +279,32 @@ section#support.active {
     height: 120px;
     resize: none;
 }
+
+/* ------------------ Фото повара ------------------ */
+#cookPhoto {
+    width: 200px;           /* ширина блока */
+    height: 300px;          /* высота блока */
+    overflow: hidden;
+    border-radius: 12px;
+    margin: 0 auto 15px;    /* центрирование и отступ снизу */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#cookPhoto img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;      /* сохраняем пропорции и обрезаем лишнее */
+    display: block;
+}
+
+/* COOKS SECTION */
+#cooks-section {
+  padding: 40px 30px;
+}
+
+#cooks-section h2 {
+  margin-bottom: 20px;
+}
+

@@ -16,9 +16,10 @@
     </div>
 
     <nav class="nav">
-        <button onclick="showSection('support')">Support</button>
+        <button onclick="showSection('review')">Reviews</button>
         <button onclick="showSection('register')">Register</button>
         <button onclick="showSection('becomeCook')">Become cook</button>
+        <button onclick="showSection('complaint')">Complaint</button>
     </nav>
 </header>
 
@@ -98,7 +99,7 @@
 
 <div class="card">
     <div class="photo">
-      <img src="https://cravinghomecooked.com/wp-content/uploads/2024/04/butter-cookies-1-23.jpg" alt="">
+      <img src="https://grill-bbq.ru/wp-content/uploads/2024/08/american-cookie-cover.jpg" alt="">
     </div>
     <h3>Cookies</h3>
     <p>Homemade sweet cookies</p>
@@ -130,11 +131,25 @@
     </div>
 </section>
 
-<section id="cook">
+<section id="orderSuccess">
+    <div class="card" style="max-width:600px; margin:80px auto; text-align:center;">
 
+        <h2>✅ Order confirmed</h2>
+        <p id="orderMessage"></p>
+
+        <button class="action" onclick="showSection('food')">
+            Back to menu
+        </button>
+
+    </div>
+</section>
+
+
+<section id="cook">
     <h2>Cook</h2>
     <div class="card">
-        <div class="photo">Cook photo</div>
+        <!-- Фото повара -->
+        <div class="photo" id="cookPhoto"></div>
 
         <h3 id="cookName"></h3>
         <p>Experience: <span id="cookExp"></span> years</p>
@@ -147,15 +162,15 @@
         <h4>Other dishes</h4>
         <ul id="cookDishes"></ul>
 
-        <button class="action" onclick="goRegister()">Order</button>
+        <button class="action" onclick="makeOrder()">Order</button>
     </div>
 </section>
 
-<section id="support">
-    <h2>Support</h2>
+<section id="review">
+    <h2>Reviews</h2>
 
-    <form class="support-box" onsubmit="sendSupport(event)">
-        <textarea id="supportMessage" placeholder="Write your message" required></textarea>
+    <form class="review" onsubmit="sendSupport(event)">
+        <textarea id="reviewMessage" placeholder="Write your message" required></textarea>
         <button class="action">Send</button>
     </form>
 </section>
@@ -168,7 +183,6 @@
         <form class="register-simple" onsubmit="submitRegister(event)">
             <input type="text" placeholder="Name" required>
             <input type="email" placeholder="Email" required>
-            <input type="tel" placeholder="Phone" required>
             <input type="password" placeholder="Password" required>
 
             <button class="action">Register</button>
@@ -187,7 +201,6 @@
             <form class="cook-form" onsubmit="submitCook(event)">
                 <input type="text" placeholder="Full name" required>
                 <input type="email" placeholder="Email" required>
-                <input type="tel" placeholder="Phone" required>
 
                 <input type="number" placeholder="Experience (years)" min="0" required>
                 <input type="text" placeholder="Speciality (e.g. Asian, Italian)" required>
@@ -209,6 +222,80 @@
     </div>
 </section>
 
+<section class="cooks-section active">
+  <h2>Our Cooks</h2>
+
+  <div class="grid">
+
+    <div class="card">
+      <div class="photo">
+        <img src="https://reston.ua/images/img/povar_1.jpg" alt="Aigerim">
+      </div>
+      <h3>Aigerim Nursultan</h3>
+      <p>Experience: 5 years</p>
+      <p>⭐⭐⭐⭐⭐</p>
+      <p>Traditional cuisine</p>
+      <button class="action" onclick="openProfile('Aigerim')">View profile</button>
+
+    </div>
+
+    <div class="card">
+      <div class="photo">
+        <img src="http://careerist.ru/news/wp-content/uploads/2016/07/photos_10674566_m-2015.jpg" alt="Anna">
+      </div>
+      <h3>Anna Ivanova</h3>
+      <p>Experience: 3 years</p>
+      <p>⭐⭐⭐⭐</p>
+      <p>Homemade meals</p>
+      <button class="action" onclick="openProfile('Anna')">View profile</button>
+
+    </div>
+
+    <div class="card">
+      <div class="photo">
+        <img src="https://media.fulledu.ru/documents/images/2018.04.13.10/article/5ad108b639d49817ab1bf1ce.jpg" alt="Maria">
+      </div>
+      <h3>Maria Petrova</h3>
+      <p>Experience: 7 years</p>
+      <p>⭐⭐⭐⭐⭐</p>
+      <p>European cuisine</p>
+      <button class="action" onclick="openProfile('Maria')">View profile</button>
+
+    </div>
+
+  </div>
+</section>
+
+<section id="cookProfile">
+    <div class="card">
+
+        <div id="profilePhoto" class="photo"></div>
+
+        <h2 id="profileName"></h2>
+        <p><strong>Experience:</strong> <span id="profileExp"></span> years</p>
+        <p id="profileRating"></p>
+        <p id="profileSpeciality"></p>
+
+        <h3>Dishes</h3>
+        <ul id="profileDishes"></ul>
+
+        <button class="action" onclick="showSection('food')">Back to menu</button>
+    </div>
+</section>
+
+
+<section id="complaint">
+    <h2>Complaint</h2>
+
+    <form class="support-box" onsubmit="sendComplaint(event)">
+        <textarea id="complaintMessage"
+                  placeholder="Write your complaint"
+                  required></textarea>
+
+        <button class="action">Send</button>
+    </form>
+</section>
+
 
 
 <script src="app.js"></script>
@@ -224,7 +311,5 @@
         </nav>
     </div>
 </footer>
-
-
 </body>
 </html>
