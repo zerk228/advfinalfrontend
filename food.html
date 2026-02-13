@@ -1,315 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>HomeCook</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <title>HomeCook</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
 <header class="header">
-    <div class="left">
-        <button class="burger" onclick="showSection('food')">
-            ☰
-        </button>
-        <span class="title">HomeCook</span>
-    </div>
+  <div class="left">
+    <button class="burger" onclick="showSection('food')">☰</button>
+    <span class="title">HomeCook</span>
+  </div>
 
-    <nav class="nav">
-        <button onclick="showSection('review')">Reviews</button>
-        <button onclick="showSection('register')">Register</button>
-        <button onclick="showSection('becomeCook')">Become cook</button>
-        <button onclick="showSection('complaint')">Complaint</button>
-    </nav>
+  <nav class="nav">
+    <button onclick="showSection('food')">Food</button>
+    <button onclick="showSection('review')">Reviews</button>
+    <button onclick="showSection('complaint')">Complaint</button>
+    <button onclick="logout()">Logout</button>
+  </nav>
 </header>
 
-<section id="food" class="active">
-    <h2>Food</h2>
-    <div class="grid">
+<!-- LOGIN -->
+<section id="login" class="active">
+  <h2>Login</h2>
 
-        <div class="card">
-    <div class="photo">
-        <img src="https://www.foodandwine.com/thmb/DI29Houjc_ccAtFKly0BbVsusHc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/crispy-comte-cheesburgers-FT-RECIPE0921-6166c6552b7148e8a8561f7765ddf20b.jpg" alt="Burger">
-    </div>
-    <h3>Burger</h3>
-    <p>Bun, beef, cheese</p>
-    <p>2500 ₸</p>
-    <button class="action" onclick="selectDish('Burger')">Select</button>
-</div>
+  <form id="loginForm" class="register-simple">
+    <input id="loginEmail" type="email" placeholder="Email" required />
+    <input id="loginPassword" type="password" placeholder="Password" required />
+    <button class="action" type="submit">Login</button>
+  </form>
 
-        <div class="card">
-            <div class="photo">
-              <img src="https://www.povarenok.ru/data/cache/2019mar/05/57/2499569_67674-710x550x.jpg" alt="">
-            </div>
-            <h3>Manty</h3>
-            <p>Dough, meat, onion</p>
-            <p>2000 ₸</p>
-            <button class="action" onclick="selectDish('Manty')">Select</button>
-        </div>
+  <p style="text-align:center; margin-top:20px;">
+    No account? Register below 👇
+  </p>
 
-        <div class="card">
-            <div class="photo">
-              <img src="https://notentirelyaverage.com/wp-content/uploads/2022/01/Plov-Not-Entirely-Average-Pic-40-Copy.jpg" alt="">
-            </div>
-            <h3>Plov</h3>
-            <p>Rice, beef, carrot</p>
-            <p>2500 ₸</p>
-            <button class="action" onclick="selectDish('Plov')">Select</button>
-        </div>
-
-        <div class="card">
-            <div class="photo">
-              <img src="https://www.thespruceeats.com/thmb/lko3xX8clhOrC894t9Drb6MoiX0=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/easy-and-hearty-vegetable-soup-99538-hero-01-1d3b936ff03144af95ddca7640259c11.jpg" alt="">
-            </div>
-            <h3>Soup</h3>
-            <p>Chicken broth, vegetables</p>
-            <p>1700 ₸</p>
-            <button class="action" onclick="selectDish('Soup')">Select</button>
-        </div>
-
-        <div class="card">
-            <div class="photo">
-              <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-XtXTdr8eaiv-kmMp6Hbn5QDPIl6UpBLygA&s" alt="">
-            </div>
-            <h3>Pasta</h3>
-            <p>Pasta, cream sauce, cheese</p>
-            <p>2800 ₸</p>
-            <button class="action" onclick="selectDish('Pasta')">Select</button>
-        </div>
-
-        <div class="card">
-            <div class="photo">
-              <img src="https://untoldrecipesbynosheen.com/wp-content/uploads/2021/04/potato-cutlet-featured.jpg" alt="">
-            </div>
-            <h3>Cutlets</h3>
-            <p>Minced meat, spices</p>
-            <p>2400 ₸</p>
-            <button class="action" onclick="selectDish('Cutlets')">Select</button>
-        </div>
-
-        <div class="card">
-    <div class="photo">
-      <img src="https://assets.epicurious.com/photos/54b3b26721388ef838b0a232/master/pass/357129_borscht_1x1.jpg" alt="">
-    </div>
-    <h3>Borscht</h3>
-    <p>Beetroot soup, beef</p>
-    <p>2200 ₸</p>
-    <button class="action" onclick="selectDish('Borscht')">Select</button>
-</div>
-
-<div class="card">
-    <div class="photo">
-      <img src="https://grill-bbq.ru/wp-content/uploads/2024/08/american-cookie-cover.jpg" alt="">
-    </div>
-    <h3>Cookies</h3>
-    <p>Homemade sweet cookies</p>
-    <p>1200 ₸</p>
-    <button class="action" onclick="selectDish('Cookies')">Select</button>
-</div>
-
-<div class="card">
-    <div class="photo">
-      <img src="https://www.budgetbytes.com/wp-content/uploads/2024/02/Mushroom-Soup-Side-500x500.jpg" alt="">
-    </div>
-    <h3>Cream soup</h3>
-    <p>Creamy vegetable soup</p>
-    <p>2600 ₸</p>
-    <button class="action" onclick="selectDish('CreamSoup')">Select</button>
-</div>
-
-<div class="card">
-    <div class="photo">
-      <img src="https://www.simplyrecipes.com/thmb/0NrKQlJ691l6L9tZXpL06uOuWis=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/Simply-Recipes-Easy-Greek-Salad-LEAD-2-4601eff771fd4de38f9722e8cafc897a.jpg" alt="">
-    </div>
-    <h3>Greek salad</h3>
-    <p>Cheese, tomatoes, olives</p>
-    <p>1800 ₸</p>
-    <button class="action" onclick="selectDish('SaladGreek')">Select</button>
-</div>
-
-
-    </div>
+  <button class="action" onclick="showSection('register')">Go to Register</button>
 </section>
 
-<section id="orderSuccess">
-    <div class="card" style="max-width:600px; margin:80px auto; text-align:center;">
-
-        <h2>✅ Order confirmed</h2>
-        <p id="orderMessage"></p>
-
-        <button class="action" onclick="showSection('food')">
-            Back to menu
-        </button>
-
-    </div>
-</section>
-
-
-<section id="cook">
-    <h2>Cook</h2>
-    <div class="card">
-        <!-- Фото повара -->
-        <div class="photo" id="cookPhoto"></div>
-
-        <h3 id="cookName"></h3>
-        <p>Experience: <span id="cookExp"></span> years</p>
-        <p id="cookRating"></p>
-        <p id="cookReview"></p>
-
-        <h4>Selected dish</h4>
-        <p id="selectedDishInfo"></p>
-
-        <h4>Other dishes</h4>
-        <ul id="cookDishes"></ul>
-
-        <button class="action" onclick="makeOrder()">Order</button>
-    </div>
-</section>
-
-<section id="review">
-    <h2>Reviews</h2>
-
-    <form class="review" onsubmit="sendSupport(event)">
-        <textarea id="reviewMessage" placeholder="Write your message" required></textarea>
-        <button class="action">Send</button>
-    </form>
-</section>
-
+<!-- REGISTER -->
 <section id="register">
-    <!-- LEFT: FORM -->
-    <div class="form-side">
-        <h2>Registration</h2>
+  <div class="form-side">
+    <h2>Registration</h2>
 
-        <form class="register-simple" onsubmit="submitRegister(event)">
-            <input type="text" placeholder="Name" required>
-            <input type="email" placeholder="Email" required>
-            <input type="password" placeholder="Password" required>
+    <form id="registerForm" class="register-simple">
+      <input id="regName" type="text" placeholder="Name" required />
+      <input id="regEmail" type="email" placeholder="Email" required />
+      <input id="regPassword" type="password" placeholder="Password" required />
+      <button class="action" type="submit">Register</button>
+    </form>
 
-            <button class="action">Register</button>
-        </form>
-    </div>
-    <img src="https://cdn-icons-png.flaticon.com/256/10823/10823229.png" alt="">
-</section>
-
-<section id="becomeCook">
-    <div class="cook-layout">
-
-        <!-- LEFT: FORM -->
-        <div class="form-side">
-            <h2>Become a Cook</h2>
-
-            <form class="cook-form" onsubmit="submitCook(event)">
-                <input type="text" placeholder="Full name" required>
-                <input type="email" placeholder="Email" required>
-
-                <input type="number" placeholder="Experience (years)" min="0" required>
-                <input type="text" placeholder="Speciality (e.g. Asian, Italian)" required>
-
-                <textarea placeholder="Tell us about yourself" required></textarea>
-
-                <button class="action">Send request</button>
-            </form>
-        </div>
-
-        <!-- RIGHT: IMAGE -->
-        <div class="image-side">
-            <img
-                src="https://cdn-icons-png.flaticon.com/512/10823/10823287.png"
-                alt="cook illustration"
-            >
-        </div>
-
-    </div>
-</section>
-
-<section class="cooks-section active">
-  <h2>Our Cooks</h2>
-
-  <div class="grid">
-
-    <div class="card">
-      <div class="photo">
-        <img src="https://reston.ua/images/img/povar_1.jpg" alt="Aigerim">
-      </div>
-      <h3>Aigerim Nursultan</h3>
-      <p>Experience: 5 years</p>
-      <p>⭐⭐⭐⭐⭐</p>
-      <p>Traditional cuisine</p>
-      <button class="action" onclick="openProfile('Aigerim')">View profile</button>
-
-    </div>
-
-    <div class="card">
-      <div class="photo">
-        <img src="http://careerist.ru/news/wp-content/uploads/2016/07/photos_10674566_m-2015.jpg" alt="Anna">
-      </div>
-      <h3>Anna Ivanova</h3>
-      <p>Experience: 3 years</p>
-      <p>⭐⭐⭐⭐</p>
-      <p>Homemade meals</p>
-      <button class="action" onclick="openProfile('Anna')">View profile</button>
-
-    </div>
-
-    <div class="card">
-      <div class="photo">
-        <img src="https://media.fulledu.ru/documents/images/2018.04.13.10/article/5ad108b639d49817ab1bf1ce.jpg" alt="Maria">
-      </div>
-      <h3>Maria Petrova</h3>
-      <p>Experience: 7 years</p>
-      <p>⭐⭐⭐⭐⭐</p>
-      <p>European cuisine</p>
-      <button class="action" onclick="openProfile('Maria')">View profile</button>
-
-    </div>
-
+    <button class="action" style="margin-top: 12px;" onclick="showSection('login')">
+      Back to login
+    </button>
   </div>
 </section>
 
-<section id="cookProfile">
-    <div class="card">
+<!-- FOOD -->
+<section id="food">
+  <h2>Food</h2>
+  <div class="grid" id="foodGrid"></div>
+</section>
 
-        <div id="profilePhoto" class="photo"></div>
+<!-- COOK -->
+<section id="cook">
+  <h2>Cook</h2>
 
-        <h2 id="profileName"></h2>
-        <p><strong>Experience:</strong> <span id="profileExp"></span> years</p>
-        <p id="profileRating"></p>
-        <p id="profileSpeciality"></p>
+  <div class="card">
+    <div class="photo" id="cookPhoto"></div>
 
-        <h3>Dishes</h3>
-        <ul id="profileDishes"></ul>
+    <h3 id="cookName"></h3>
+    <p id="cookRating"></p>
+    <p id="cookReview"></p>
 
-        <button class="action" onclick="showSection('food')">Back to menu</button>
+    <h4>Selected dish</h4>
+    <p id="selectedDishInfo"></p>
+
+    <div style="margin-top: 16px;">
+      <input id="orderAddress" type="text" placeholder="Delivery address" />
+      <input id="orderAmount" type="number" min="1" value="1" />
     </div>
+
+    <button class="action" onclick="makeOrder()">Order</button>
+    <button class="action" onclick="showSection('food')" style="margin-top: 10px;">
+      Back
+    </button>
+  </div>
 </section>
 
+<!-- ORDER SUCCESS -->
+<section id="orderSuccess">
+  <div class="card" style="max-width:600px; margin:80px auto; text-align:center;">
+    <h2>✅ Order confirmed</h2>
+    <p id="orderMessage"></p>
 
+    <button class="action" onclick="showSection('food')">
+      Back to menu
+    </button>
+  </div>
+</section>
+
+<!-- REVIEW -->
+<section id="review">
+  <h2>Reviews</h2>
+
+  <form id="reviewForm" class="review">
+    <input id="reviewCookId" type="text" placeholder="Cook ID (UUID)" required />
+    <input id="reviewRating" type="number" min="1" max="5" placeholder="Rating 1-5" required />
+    <textarea id="reviewMessage" placeholder="Write your comment"></textarea>
+    <button class="action" type="submit">Send</button>
+  </form>
+</section>
+
+<!-- COMPLAINT -->
 <section id="complaint">
-    <h2>Complaint</h2>
+  <h2>Complaint</h2>
 
-    <form class="support-box" onsubmit="sendComplaint(event)">
-        <textarea id="complaintMessage"
-                  placeholder="Write your complaint"
-                  required></textarea>
-
-        <button class="action">Send</button>
-    </form>
+  <form id="complaintForm" class="support-box">
+    <input id="complaintTargetId" type="text" placeholder="Target ID (UUID)" required />
+    <textarea id="complaintMessage" placeholder="Write your complaint" required></textarea>
+    <button class="action" type="submit">Send</button>
+  </form>
 </section>
-
-
 
 <script src="app.js"></script>
 
 <footer class="footer">
-    <div class="footer-content">
-        <span>© 2026 HomeCook</span>
-
-        <nav class="footer-links">
-            <a href="#" onclick="showSection('food')">01</a>
-            <a href="#" onclick="showSection('support')">02</a>
-            <a href="#" onclick="showSection('register')">03</a>
-        </nav>
-    </div>
+  <div class="footer-content">
+    <span>© 2026 HomeCook</span>
+  </div>
 </footer>
+
 </body>
 </html>
